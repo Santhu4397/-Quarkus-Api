@@ -72,4 +72,7 @@ public class ProductController {
 
         }
     }
+    public void newMehtod(){
+
+    }
 }
