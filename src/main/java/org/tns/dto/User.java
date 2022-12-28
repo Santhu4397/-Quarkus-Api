@@ -33,5 +33,7 @@ public class User extends PanacheMongoEntity {
               "[-/]?[0-9]{4}|02[-/]?29[-/]?([0-9]{2}(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00))$"
               ,message = "userStartDate"+DATE_FORMAT)
       private String userStartDate;
+      @NotBlank(message = "password"+NOT_BLANK)
+      private String pws;
 
 }

@@ -2,9 +2,14 @@ package org.tns.controller;
 
 import io.quarkus.logging.Log;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
+
 import org.tns.dao.ProductDao;
+import org.tns.dao.UserDao;
+import org.tns.dto.FileUpload;
 import org.tns.dto.Product;
+import org.tns.dto.User;
 import org.tns.helper.ProductInfo;
+import org.tns.helper.UserInfo;
 import org.tns.service.Service;
 import org.tns.util.ResponseBodySingle;
 
@@ -14,7 +19,12 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,6 +40,8 @@ public class ProductController {
     Service userService;
     @Inject
     Validator validator;
+    @Inject
+    UserDao userDao;
 
     @POST
     @Path("product")
@@ -72,5 +84,23 @@ public class ProductController {
 
         }
     }
+
+    @POST
+    @Path("upload")
+    public String fileUpload(FileUpload fileUpload){
+
+        try  {
+
+            Files.write(Paths.get("C:\\Inputfiles\\test1.xlsx"), fileUpload.getBytes(), StandardOpenOption.CREATE_NEW);
+            return "Done";
+
+            //fos.close(); There is no more need for this line since you had created the instance of "fos" inside the try. And this will automatically close the OutputStream
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

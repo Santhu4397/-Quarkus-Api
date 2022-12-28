@@ -3,10 +3,7 @@ package org.tns.mockito;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.IsEqual.equalTo;

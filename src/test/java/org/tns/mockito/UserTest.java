@@ -17,6 +17,8 @@ import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
+import javax.json.Json;
+import javax.json.JsonObject;
 
 import static io.smallrye.common.constraint.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,11 +50,11 @@ public class UserTest {
     public void succcesRateCase(){
         List<UserInfo> users=new ArrayList<>();
         users.add(userInfo);
-        User user=new User("Santhosh","Santh@gmial.com","Lap","09-12-2022","10-10-2022");
+        User user=new User("Santhosh","Santh@gmial.com","Lap","09-12-2022","10-10-2022","");
         when(service.getListOFALlUser("santhosh")).thenReturn(userInfo);
         when(userRepo.findByName("santhosh")).thenReturn(user);
         Response getAllResponse = userController.getAll("santhosh");
-      Response saveResponse=userController.saveUser(new User("gururaj@gmail.com","gururaj","TV","12-24-2022","10-24-2022"));
+      Response saveResponse=userController.saveUser(new User("gururaj@gmail.com","gururaj","TV","12-24-2022","10-24-2022",""));
       Response getResponse= userController.get("santhosh");
 
       assertEquals(Response.Status.OK.getStatusCode(),getResponse.getStatus());

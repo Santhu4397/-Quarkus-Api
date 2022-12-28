@@ -27,10 +27,24 @@ public class UserDao {
 
 
 
-    public  void updateUser(User user){
+    public  String  updateUser(User user){
             userRepo.update(user);
+        return "Data Inserted";
 
+    }
+    public User login(String email,String pws){
 
+        User user=userRepo.findbyemail(email);
+      try {
+            if (user.getEmail().equals(email) && user.getPws().equals(pws)) {
+                return user;
+            }
+        }catch (Exception ex) {
+          Log.error("!!!!!!!!!"+ex+"!!!!!!!");
+
+                }
+
+        return null;
     }
     public String deleteUser(String name){
         User user=userRepo.findByName(name);

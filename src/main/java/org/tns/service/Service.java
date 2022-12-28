@@ -34,7 +34,9 @@ public class Service {
 
 
 
-
+        public List<User> getAllUser(){
+            return userRepo.findAll().list();
+        }
     public UserInfo getListOFALlUser(String name) {
         UserInfo userInfo = new UserInfo();
         User user = userRepo.findByName(name);
